@@ -1,23 +1,135 @@
-import React from 'react'
+import React, { useContext, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
-import { Box, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Input,
+} from "@chakra-ui/react";
+import articleContext from "../context/articles/articleContext";
 
-const ArticleCard = ({article}) => {
+const ArticleCard = ({ article }) => {
+  const { deleteArticle, editArticle, loading } = useContext(articleContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentArticle, setCurrentArticle] = useState({
+    id: "",
+    etitle: "",
+    edescription: "",
+  });
+
+  const onChange = (e) => {
+    setCurrentArticle({ ...currentArticle, [e.target.name]: e.target.value });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    editArticle(
+      currentArticle.id,
+      currentArticle.etitle,
+      currentArticle.edescription
+    );
+    setCurrentArticle(currentArticle);
+    onClose();
+  };
+
+  const updateArticle = () => {
+    console.log("hello");
+    setCurrentArticle({
+      id: article._id,
+      etitle: article.title,
+      edescription: article.description,
+    });
+    onOpen();
+  };
+
   return (
-    <div className="col-md-4">
-      <div className="card my-3">
-        <div className="card-body">
-          <Text fontWeight={600} fontSize='24px' className="card-title" >{article.title}</Text>
-          <Text fontSize='16px' className="card-text"> {article.desc} </Text>  
-          <Box display='flex'>
-          <FiEdit className='mt-3 me-3' size={'23px'} />        
-          <AiOutlineDelete className='mt-3' size={'23px'} />        
-          </Box>
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit your Article</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl className="mb-3">
+              <FormLabel>Article Title</FormLabel>
+              <Input
+                type="text"
+                name="etitle"
+                id="etitle"
+                onChange={onChange}
+                value={currentArticle.etitle}
+              />
+              <FormHelperText>
+                Choose few words that best describes your article.
+              </FormHelperText>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Article</FormLabel>
+              <Input
+                type="text"
+                name="edescription"
+                id="edescription"
+                onChange={onChange}
+                value={currentArticle.edescription}
+              />
+              <FormHelperText>Write your article here.</FormHelperText>
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              colorScheme="green"
+              mr={3}
+              onClick={handleClick}
+              isLoading={loading}
+            >
+              Update
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <div className="col-md-4">
+        <div className="card my-3" style={{minHeight:'50px'}}>
+          <div className="card-body">
+            <Text fontWeight={600} fontSize="24px" className="card-title">
+              {article.title}
+            </Text>
+            <Text fontSize="16px" className="card-text">
+              {" "}
+              {article.description}{" "}
+            </Text>
+            <Box display="flex">
+              <FiEdit
+                className="mt-3 me-3"
+                size={"23px"}
+                cursor="pointer"
+                onClick={() => updateArticle(currentArticle)}
+              />
+              <AiOutlineDelete
+                className="mt-3"
+                size={"23px"}
+                cursor="pointer"
+                onClick={() => deleteArticle(article._id)}
+              />
+            </Box>
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
-export default ArticleCard
+export default ArticleCard;

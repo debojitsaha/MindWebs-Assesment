@@ -22,21 +22,22 @@ import { BsVectorPen } from "react-icons/bs";
 import articleContext from "../context/articles/articleContext";
 
 const Header = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const context = useContext(articleContext)
-  const { addArticle } = context
-  const [article, setArticle] = useState({title:"",description:""})
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const context = useContext(articleContext);
+  const { addArticle, loading } = context;
+  const [article, setArticle] = useState({ title: "", description: "" });
 
-  const onChange= (e)=>{
-    setArticle({...article, [e.target.name]: e.target.value})
-  }
+  const onChange = (e) => {
+    setArticle({ ...article, [e.target.name]: e.target.value });
+  };
 
-  const handleClick= (e)=>{
-    e.preventDefault()
-    addArticle(article.title, article.description)
-    document.getElementById('title').value= ""
-    document.getElementById('description').value= ""
-  }
+  const handleClick = (e) => {
+    e.preventDefault();
+    addArticle(article.title, article.description);
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    onClose();
+  };
 
   return (
     <>
@@ -48,18 +49,30 @@ const Header = () => {
           <ModalBody>
             <FormControl className="mb-3">
               <FormLabel>Article Title</FormLabel>
-              <Input type="text" name="title" id='title' onChange={onChange} />
-              <FormHelperText>Choose few words that best describes your article.</FormHelperText>
+              <Input type="text" name="title" id="title" onChange={onChange} />
+              <FormHelperText>
+                Choose few words that best describes your article.
+              </FormHelperText>
             </FormControl>
             <FormControl>
               <FormLabel>Article</FormLabel>
-              <Input type="text" name="description" id='description' onChange={onChange} />
+              <Input
+                type="text"
+                name="description"
+                id="description"
+                onChange={onChange}
+              />
               <FormHelperText>Write your article here.</FormHelperText>
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="green" mr={3} onClick={handleClick}>
+            <Button
+              colorScheme="green"
+              mr={3}
+              onClick={handleClick}
+              isLoading={loading}
+            >
               Submit
             </Button>
           </ModalFooter>
