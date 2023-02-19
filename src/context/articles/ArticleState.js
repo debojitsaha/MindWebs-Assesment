@@ -72,9 +72,7 @@ const ArticleState = (props) => {
       body: JSON.stringify({ title, description }),
     });
     const json = await response.json();
-    // console.log(json);
 
-    // Logic to edit in client
     let newArticles = JSON.parse(JSON.stringify(articles));
     for (let index = 0; index < newArticles.length; index++) {
       const element = newArticles[index];

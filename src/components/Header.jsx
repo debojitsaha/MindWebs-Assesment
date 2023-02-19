@@ -24,7 +24,7 @@ import articleContext from "../context/articles/articleContext";
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const context = useContext(articleContext);
-  const { addArticle, loading } = context;
+  const { articles, addArticle, loading } = context;
   const [article, setArticle] = useState({ title: "", description: "" });
 
   const onChange = (e) => {
@@ -88,7 +88,11 @@ const Header = () => {
             Online platform to write & store your articles
           </Text>
           <Text color="gray.600">
-            <strong>Published:</strong> Feb 18, 2023
+            <strong>Published:</strong>{" "}
+            {articles.length !== 0
+              ? articles[articles.length - 1].date.toString().slice(0, 10)
+              : "loading.."}
+            {/* {console.log(articles.length!==0?articles[articles.length-1].date:"loading..")} */}
           </Text>
           <Text color="gray.600" className="mb-4">
             <strong>DOI:</strong> 123456789
@@ -100,7 +104,7 @@ const Header = () => {
             <BiShareAlt className="mx-4" />
           </Box>
         </Box>
-        <Box>
+        <Box className="mt-2">
           <Button
             colorScheme="whatsapp"
             rightIcon={<BsVectorPen />}
@@ -110,7 +114,9 @@ const Header = () => {
           </Button>
         </Box>
       </div>
-      <hr style={{ backgroundColor: "GrayText", height: "0.5px" }} />
+      <hr
+        style={{ backgroundColor: "GrayText", height: "0.5px", border: "none" }}
+      />
     </>
   );
 };

@@ -6,8 +6,8 @@ import { ImSpinner2 } from "react-icons/im";
 const Articles = () => {
   const { articles, getArticles, loading } = useContext(articleContext);
 
-  if(loading){
-    <ImSpinner2 />
+  if (loading) {
+    <ImSpinner2 />;
   }
 
   useEffect(() => {
@@ -15,8 +15,8 @@ const Articles = () => {
   }, []);
 
   return (
-    <div className="container m-auto">
-      <div className=" row my-2 m-auto">
+    <div style={{ backgroundColor: "#f6f6f6" }}>
+      <div className=" row mb-2 m-auto">
         {articles.map((article, i) => {
           return <ArticleCard article={article} key={i} />;
         })}

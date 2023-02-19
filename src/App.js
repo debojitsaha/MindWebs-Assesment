@@ -4,15 +4,17 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Articles from "./components/Articles";
 import ArticleState from "./context/articles/ArticleState";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <ArticleState>
-    <ChakraProvider>
-      <Navbar />
-      <Header />
-      <Articles />
-    </ChakraProvider>
+      <ChakraProvider>
+        <Navbar />
+        <Header />
+        <Articles />
+        <Footer />
+      </ChakraProvider>
     </ArticleState>
   );
 }

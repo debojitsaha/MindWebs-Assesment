@@ -102,30 +102,41 @@ const ArticleCard = ({ article }) => {
       </Modal>
 
       <div className="col-md-4">
-        <div className="card my-3" style={{minHeight:'50px'}}>
+        <div
+          className="card my-3 shadow bg-body-tertiary rounded"
+          style={{ height: "300px", overflow: "scroll" }}
+        >
           <div className="card-body">
-            <Text fontWeight={600} fontSize="24px" className="card-title">
+            <Text
+              fontWeight={600}
+              fontSize="24px"
+              className="card-header mb-3 text-center"
+            >
               {article.title}
             </Text>
             <Text fontSize="16px" className="card-text">
               {" "}
               {article.description}{" "}
             </Text>
-            <Box display="flex">
-              <FiEdit
-                className="mt-3 me-3"
-                size={"23px"}
-                cursor="pointer"
-                onClick={() => updateArticle(currentArticle)}
-              />
-              <AiOutlineDelete
-                className="mt-3"
-                size={"23px"}
-                cursor="pointer"
-                onClick={() => deleteArticle(article._id)}
-              />
-            </Box>
           </div>
+          <Box
+            display="flex"
+            className="card-footer"
+            alignItems={"center"}
+            justifyContent="center"
+          >
+            <FiEdit
+              className="me-3"
+              size={"23px"}
+              cursor="pointer"
+              onClick={() => updateArticle(currentArticle)}
+            />
+            <AiOutlineDelete
+              size={"23px"}
+              cursor="pointer"
+              onClick={() => deleteArticle(article._id)}
+            />
+          </Box>
         </div>
       </div>
     </>
