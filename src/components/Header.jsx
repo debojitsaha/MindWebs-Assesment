@@ -1,4 +1,11 @@
-import { Box, Heading, Text, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  Image,
+  Avatar,
+  AvatarGroup,
+} from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { BiLike, BiDislike } from "react-icons/bi";
 import articleContext from "../context/articles/articleContext";
@@ -7,6 +14,7 @@ import sharing from "../assets/sharing.png";
 import pen from "../assets/pen.png";
 import tag from "../assets/tag.png";
 import download from "../assets/download.png";
+import profile from "../assets/profile.jpg";
 
 const Header = () => {
   const context = useContext(articleContext);
@@ -16,19 +24,26 @@ const Header = () => {
     <>
       <div className="d-flex container my-2">
         <Box className="container mb-2">
-          <Heading fontSize={"32px"} className="my-1" color={"#474545"}>
+          <Heading fontSize={"30px"} className="my-1" color={"#474545"}>
             Post your Articles over the cloud
           </Heading>
           <Text color="gray" className="mb-2">
             Online platform to write & store your articles
           </Text>
-          <Text color="gray.600">
-            <strong>Published:</strong>{" "}
-            {articles.length !== 0
-              ? articles[articles.length - 1].date.toString().slice(0, 10)
-              : "loading.."}
-            {/* {console.log(articles.length!==0?articles[articles.length-1].date:"loading..")} */}
-          </Text>
+          <Box display={"flex"}>
+            <Text color="gray.600">
+              <strong>Last Published:</strong>{" "}
+              {articles.length !== 0
+                ? articles[articles.length - 1].date.toString().slice(0, 10)
+                : "loading.."}
+              {/* {console.log(articles.length!==0?articles[articles.length-1].date:"loading..")} */}
+            </Text>
+            <AvatarGroup size="sm" max={3} ml={5}>
+              <Avatar name="Ryan Florence" src={profile} />
+              <Avatar name="Segun Adebayo" src={profile} />
+              <Avatar name="Kent Dodds" src={profile} />
+            </AvatarGroup>
+          </Box>
           <Text color="gray.600" className="mb-4">
             <strong>DOI:</strong> 123456789
           </Text>
@@ -60,13 +75,13 @@ const Header = () => {
               </Text>
             </Box>
           </Box>
-          <Box display="flex" alignItems={'center'}>
+          <Box display="flex" alignItems={"center"}>
             <BiLike className="mx-4" size={"22px"} />
             <BiDislike className="mx-4" size={"22px"} />
-            <Image src={pen} h='24px' className="mx-2" />
-            <Image src={sharing} h='24px' className="mx-2" />
-            <Image src={sharing} h='24px' className="mx-2" />
-            <Image src={tag} h='24px' className="mx-2" />
+            <Image src={pen} h="24px" className="mx-2" />
+            <Image src={sharing} h="24px" className="mx-2" />
+            <Image src={sharing} h="24px" className="mx-2" />
+            <Image src={tag} h="24px" className="mx-2" />
             <Text
               bgColor={"gray.200"}
               p="3px 10px"
