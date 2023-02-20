@@ -1,3 +1,7 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
+.func{
+  color: #3b3b3b;
+}

@@ -1,84 +1,18 @@
-import {
-  Box,
-  Button,
-  Heading,
-  Text,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Input,
-} from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
-import { BiLike, BiDislike, BiEditAlt, BiShareAlt } from "react-icons/bi";
-import { BsVectorPen } from "react-icons/bs";
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { BiLike, BiDislike } from "react-icons/bi";
 import articleContext from "../context/articles/articleContext";
+import page from "../assets/page.png";
+import sharing from "../assets/sharing.png";
+import pen from "../assets/pen.png";
+import tag from "../assets/tag.png";
 
 const Header = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const context = useContext(articleContext);
-  const { articles, addArticle, loading } = context;
-  const [article, setArticle] = useState({ title: "", description: "" });
-
-  const onChange = (e) => {
-    setArticle({ ...article, [e.target.name]: e.target.value });
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    addArticle(article.title, article.description);
-    document.getElementById("title").value = "";
-    document.getElementById("description").value = "";
-    onClose();
-  };
+  const { articles } = context;
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Write your Article</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl className="mb-3">
-              <FormLabel>Article Title</FormLabel>
-              <Input type="text" name="title" id="title" onChange={onChange} />
-              <FormHelperText>
-                Choose few words that best describes your article.
-              </FormHelperText>
-            </FormControl>
-            <FormControl>
-              <FormLabel>Article</FormLabel>
-              <Input
-                type="text"
-                name="description"
-                id="description"
-                onChange={onChange}
-              />
-              <FormHelperText>Write your article here.</FormHelperText>
-            </FormControl>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button
-              colorScheme="green"
-              mr={3}
-              onClick={handleClick}
-              isLoading={loading}
-            >
-              Submit
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-
       <div className="d-flex container my-2">
         <Box className="container mb-2">
           <Heading as="h3" className="my-1">
@@ -97,21 +31,56 @@ const Header = () => {
           <Text color="gray.600" className="mb-4">
             <strong>DOI:</strong> 123456789
           </Text>
+          <Box className="d-flex my-3">
+            <Box className="d-flex flex-column me-3">
+              <Text color={"gray.700"} fontWeight={500}>
+                Expert Score
+              </Text>
+              <Text
+                color={"blue.500"}
+                align="center"
+                fontWeight={500}
+                fontSize="20px"
+              >
+                98
+              </Text>
+            </Box>
+            <Box className="d-flex flex-column">
+              <Text color={"gray.700"} fontWeight={500}>
+                Overall Score
+              </Text>
+              <Text
+                color={"green.400"}
+                align="center"
+                fontWeight={500}
+                fontSize="20px"
+              >
+                95
+              </Text>
+            </Box>
+          </Box>
           <Box display="flex">
-            <BiLike className="mx-4" />
-            <BiDislike className="mx-4" />
-            <BiEditAlt className="mx-4" />
-            <BiShareAlt className="mx-4" />
+            <BiLike className="mx-4" size={"28px"} />
+            <BiDislike className="mx-4" size={"28px"} />
+            <Image src={pen} className="mx-2" w="25px" h="28px" />
+            <Image src={sharing} w="25px" h="28px" className="mx-2" />
+            <Image src={sharing} w="25px" h="28px" className="mx-2" />
+            <Image src={tag} w="25px" h="28px" className="mx-2" />
+            <Text
+              bgColor={"gray.200"}
+              p="3px 10px"
+              borderRadius={"5px"}
+              color="blue.500"
+              fontWeight={500}
+              fontSize="18px"
+              mx={2}
+            >
+              Article
+            </Text>
           </Box>
         </Box>
         <Box className="mt-2">
-          <Button
-            colorScheme="whatsapp"
-            rightIcon={<BsVectorPen />}
-            onClick={onOpen}
-          >
-            Write your article
-          </Button>
+          <Image src={page} w="100px" />
         </Box>
       </div>
       <hr

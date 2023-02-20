@@ -1,0 +1,78 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  padding: 10px 20px;
+  height: 70px;
+  border-bottom: 1px solid lightgray;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  color: #000;
+  z-index: 999;
+}
+.navbar img {
+  width: 70px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+.navbar .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar .left span {
+  font-size: 20px;
+}
+.navbar .left .leftinner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar .left .search {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+  border-radius: 5px;
+}
+.navbar .left .search input {
+  padding: 2px 7px;
+  border: none;
+  width: 450px;
+  outline-style: none;
+  background: transparent;
+}
+.navbar .rightouter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.navbar .rightouter .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar .rightouter .right .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.navbar .rightouter .right .user img {
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+.navbar .rightouter .right .user .profile {
+  border-radius: 50%;
+}
+.navbar .rightouter .right .user span {
+  font-weight: 500;
+  cursor: pointer;
+}/*# sourceMappingURL=navbar.css.map */
