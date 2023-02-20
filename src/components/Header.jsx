@@ -6,6 +6,7 @@ import page from "../assets/page.png";
 import sharing from "../assets/sharing.png";
 import pen from "../assets/pen.png";
 import tag from "../assets/tag.png";
+import download from "../assets/download.png";
 
 const Header = () => {
   const context = useContext(articleContext);
@@ -15,7 +16,7 @@ const Header = () => {
     <>
       <div className="d-flex container my-2">
         <Box className="container mb-2">
-          <Heading as="h3" className="my-1">
+          <Heading fontSize={"32px"} className="my-1" color={"#474545"}>
             Post your Articles over the cloud
           </Heading>
           <Text color="gray" className="mb-2">
@@ -60,12 +61,12 @@ const Header = () => {
             </Box>
           </Box>
           <Box display="flex">
-            <BiLike className="mx-4" size={"28px"} />
-            <BiDislike className="mx-4" size={"28px"} />
-            <Image src={pen} className="mx-2" w="25px" h="28px" />
-            <Image src={sharing} w="25px" h="28px" className="mx-2" />
-            <Image src={sharing} w="25px" h="28px" className="mx-2" />
-            <Image src={tag} w="25px" h="28px" className="mx-2" />
+            <BiLike className="mx-4" size={"22px"} />
+            <BiDislike className="mx-4" size={"22px"} />
+            <Image src={pen} className="mx-2" w="22px" h="24px" />
+            <Image src={sharing} w="22px" h="24px" className="mx-2" />
+            <Image src={sharing} w="22px" h="24px" className="mx-2" />
+            <Image src={tag} w="22px" h="24px" className="mx-2" />
             <Text
               bgColor={"gray.200"}
               p="3px 10px"
@@ -79,10 +80,32 @@ const Header = () => {
             </Text>
           </Box>
         </Box>
-        <Box className="mt-2">
-          <Image src={page} w="100px" />
+        <Box
+          className="mt-2"
+          display={"flex"}
+          flexDir="column"
+          alignItems="center"
+        >
+          <Image src={page} w="120px" />
+          <Image src={download} w="30px" mt={3} />
         </Box>
       </div>
+      <Box display={"flex"} className="container ">
+        {articles.map((article, i) => {
+          return (
+            <Text
+              fontWeight={500}
+              mr={4}
+              color={i === 0 ? "blue" : "gray.700"}
+              borderBottom={i === 0 ? "2px" : "none"}
+              borderColor={"blue.500"}
+            >
+              <span style={{ color: "blue", fontWeight: "bold" }}>+</span>
+              {article.title}
+            </Text>
+          );
+        })}
+      </Box>
       <hr
         style={{ backgroundColor: "GrayText", height: "0.5px", border: "none" }}
       />

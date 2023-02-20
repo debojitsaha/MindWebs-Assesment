@@ -17,8 +17,16 @@ import {
   FormLabel,
   FormHelperText,
   Input,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Container,
+  Image,
 } from "@chakra-ui/react";
 import articleContext from "../context/articles/articleContext";
+import coins from "../assets/coins.png";
 
 const ArticleCard = ({ article }) => {
   const { deleteArticle, editArticle, loading } = useContext(articleContext);
@@ -55,7 +63,7 @@ const ArticleCard = ({ article }) => {
   };
 
   return (
-    <>
+    <div>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -101,7 +109,7 @@ const ArticleCard = ({ article }) => {
         </ModalContent>
       </Modal>
 
-      <div className="col-md-4">
+      {/* <div className="col-md-4">
         <div
           className="card my-3 shadow bg-body-tertiary rounded"
           style={{ height: "300px", overflow: "scroll" }}
@@ -138,8 +146,78 @@ const ArticleCard = ({ article }) => {
             />
           </Box>
         </div>
-      </div>
-    </>
+      </div> */}
+
+      <Accordion allowToggle className="container">
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box
+                as="span"
+                flex="1"
+                textAlign="left"
+                display={"flex"}
+                justifyContent="space-between"
+              >
+                <Text
+                  color={"gray.700"}
+                  fontWeight={700}
+                  fontSize="18px"
+                  mr={2}
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  {article.title}
+                  <Box
+                    display={"flex"}
+                    mx={2}
+                    bgColor="#fce6b6"
+                    px={3}
+                    py={1}
+                    borderRadius="5px"
+                  >
+                    <Text
+                      color={"gray.700"}
+                      fontWeight={600}
+                      fontSize="16px"
+                      mr={2}
+                    >
+                      Earn
+                    </Text>
+                    <Image src={coins} w="20px" />
+                  </Box>
+                </Text>
+                <Box display={"flex"} mr={2}>
+                  <Button colorScheme={"blue"} px={2} mx={2}>
+                    <FiEdit
+                      size={"18px"}
+                      cursor="pointer"
+                      onClick={() => updateArticle(currentArticle)}
+                    />
+                  </Button>
+                  <Button colorScheme={"red"} px={2}>
+                    <AiOutlineDelete
+                      size={"18"}
+                      cursor="pointer"
+                      onClick={() => deleteArticle(article._id)}
+                    />
+                  </Button>
+                </Box>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel
+            pb={4}
+            color={"gray.700"}
+            fontWeight={500}
+            fontSize="16px"
+          >
+            {article.description}
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    </div>
   );
 };
 
