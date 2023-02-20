@@ -26,7 +26,7 @@ import { BsVectorPen } from "react-icons/bs";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const context = useContext(articleContext);
-  const { addArticle, loading } = context;
+  const { articles, addArticle, loading } = context;
   const [article, setArticle] = useState({ title: "", description: "" });
 
   const onChange = (e) => {
@@ -109,6 +109,7 @@ const Navbar = () => {
           <div className="right">
             <div className="user">
               <img src={profile} className="profile" alt="profile" />
+              <span>{articles.length}</span>
               <img src={coins} alt="coins" />
               <Button
                 colorScheme="blue"

@@ -12,11 +12,12 @@ const Articles = () => {
 
   useEffect(() => {
     getArticles();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#f6f6f6" }}>
-      <div className=" row mb-2 m-auto">
+    <div className="mb-5" style={{ backgroundColor: "#f6f6f6", overflow:"scroll" }}>
+      <div className=" row mb-3 mx-auto">
         {articles.map((article, i) => {
           return <ArticleCard article={article} key={i} />;
         })}

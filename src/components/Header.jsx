@@ -60,13 +60,13 @@ const Header = () => {
               </Text>
             </Box>
           </Box>
-          <Box display="flex">
+          <Box display="flex" alignItems={'center'}>
             <BiLike className="mx-4" size={"22px"} />
             <BiDislike className="mx-4" size={"22px"} />
-            <Image src={pen} className="mx-2" w="22px" h="24px" />
-            <Image src={sharing} w="22px" h="24px" className="mx-2" />
-            <Image src={sharing} w="22px" h="24px" className="mx-2" />
-            <Image src={tag} w="22px" h="24px" className="mx-2" />
+            <Image src={pen} h='24px' className="mx-2" />
+            <Image src={sharing} h='24px' className="mx-2" />
+            <Image src={sharing} h='24px' className="mx-2" />
+            <Image src={tag} h='24px' className="mx-2" />
             <Text
               bgColor={"gray.200"}
               p="3px 10px"

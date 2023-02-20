@@ -22,7 +22,6 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Container,
   Image,
 } from "@chakra-ui/react";
 import articleContext from "../context/articles/articleContext";
